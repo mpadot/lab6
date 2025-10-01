@@ -1,14 +1,13 @@
+from unittest import result
 import pytest
 from presidio_anonymizer.sample import sample_run_anonymizer
+
 @pytest.mark.parametrize(
     "text, start, end, new_value",
     [
         ("My name is Bond.", 11, 15, "BIP")
     ]
 )
-
-
-
 def test_sample_run_anonymizer(text, start, end, new_value):
     # Run function
     result = sample_run_anonymizer(text, start, end, new_value)
@@ -22,7 +21,7 @@ def test_sample_run_anonymizer(text, start, end, new_value):
 
     item = result.items[0]
     assert item.start == 11
-    assert item.end == 14   
+    assert item.end == 14
     assert item.text == "BIP"
     assert item.operator == "replace"
     assert item.entity_type == "PERSON"
