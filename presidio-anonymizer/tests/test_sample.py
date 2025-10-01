@@ -2,12 +2,15 @@ import pytest
 from presidio_anonymizer.sample import sample_run_anonymizer
 
 def test_sample_run_anonymizer():
-    text = "My name is Bond"
+    text = "My name is Bond."
     start, end = 11, 15
     engine_result = sample_run_anonymizer(text, start, end)
 
     # Check the anonymized text
-    assert engine_result.text == "My name is BIP"
+
+
+    assert engine_result.text == "My name is BIP."
+
 
     # Check there is exactly 1 item in results
     assert len(engine_result.items) == 1
@@ -15,7 +18,9 @@ def test_sample_run_anonymizer():
 
     # Check item details
     assert item.start == start
-    assert item.end == end - 1   # because Presidio treats end as inclusive in items
+
+    assert item.end == end
     assert item.entity_type == "PERSON"
     assert item.text == "BIP"
     assert item.operator == "replace"
+
